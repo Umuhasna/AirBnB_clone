@@ -29,31 +29,31 @@ class TestBaseModel(unittest.TestCase):
         '''
         Docs
         '''
-        moduleDoc = __import__("models.base_model").__doc__
+        moduleDoc = __import__("models.base_model").base_model.__doc__
         self.assertGreater(len(moduleDoc), 0)
 
     def test_classDocs(self):
         '''
         '''
-        classDoc = BaseModel.__doc__
+        classDoc = __import__("models.base_model").base_model.BaseModel.__doc__
         self.assertGreater(len(classDoc), 0)
 
     def test_methodDocsSave(self):
         '''
         '''
-        methodDoc = BaseModel.save.__doc__
+        methodDoc = __import__("models.base_model").base_model.BaseModel.save.__doc__
         self.assertGreater(len(methodDoc), 0)
 
     def test_methodDocsto_dict(self):
         '''
         '''
-        methodDoc = BaseModel.to_dict.__doc__
+        methodDoc = __import__("models.base_model").base_model.BaseModel.to_dict.__doc__
         self.assertGreater(len(methodDoc), 0)
 
     def test_methodDocs__str___(self):
         '''
         '''
-        methodDoc = __import__("models.base_model").BaseModel.__str__.__doc__
+        methodDoc = __import__("models.base_model").base_model.BaseModel.__str__.__doc__
         self.assertGreater(len(methodDoc), 0)
 
     def test_idType(self):
