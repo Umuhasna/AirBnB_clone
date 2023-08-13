@@ -20,10 +20,10 @@ class BaseModel:
             for key, value in kwargs.items():
                 if key == 'created_at':
                     value = dateutil.parser.isoparse(value)
-                    self.created_at = value;
+                    self.created_at = value
                 elif key == 'updated_at':
                     value = dateutil.parser.isoparse(value)
-                    self.updated_at = value;
+                    self.updated_at = value
                 elif key == 'id':
                     self.id = str(value)
         else:
