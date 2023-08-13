@@ -11,7 +11,7 @@ class FileStorage:
     '''
     Class Docs
     '''
-    __file_path = "file.json"
+    __file_path = ""
     __objects = {}
 
     def all(self):
@@ -32,7 +32,9 @@ class FileStorage:
         '''
         Docs
         '''
-        final_dict = {key: value.to_dict() for key, value in FileStorage.__objects.items()}
+        final_dict = {
+                key: value.to_dict() for key, value
+                in FileStorage.__objects.items()}
         json_string = dumps(final_dict)
         filename = FileStorage.__file_path
         with open(filename, "w") as f:
