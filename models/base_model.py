@@ -3,7 +3,6 @@
 Module Docs:
 '''
 from datetime import datetime
-import dateutil.parser
 import uuid
 
 
@@ -19,10 +18,10 @@ class BaseModel:
         if kwargs:
             for key, value in kwargs.items():
                 if key == 'created_at':
-                    value = dateutil.parser.isoparse(value)
+                    value = datetime.fromisoformat(value)
                     self.created_at = value
                 elif key == 'updated_at':
-                    value = dateutil.parser.isoparse(value)
+                    value = datetime.fromisoformat(value)
                     self.updated_at = value
                 elif key == 'id':
                     self.id = str(value)
