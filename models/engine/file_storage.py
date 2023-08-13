@@ -4,6 +4,7 @@ Module Docs
 '''
 from json import dumps, loads
 from os.path import isfile
+from models.base_model import BaseModel
 
 
 class FileStorage:
@@ -47,9 +48,4 @@ class FileStorage:
                 line = f.readline()
                 final_dict = loads(line)
             for key, value in final_dict.items():
-                if value["__class__"] == "BaseModel":
-                    dummy_obj = self.__class__(value)
-                else:
-                    dummy_obj = self.__class__()
-
-                self.new(dummy_obj)
+                self.new(BaseModel(value))
