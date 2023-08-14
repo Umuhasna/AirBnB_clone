@@ -191,11 +191,85 @@ class HBNBCommand(cmd.Cmd):
                 command_method = args_array[0]
                 if command_method in allowed_methods:
                     if command_method == ".all()":
-                        final_list = []
-                        for key, value in models.storage.all().items():
-                            if ("User" in key):
-                                final_list.append(str(value))
-                        print(final_list)
+                        self.do_all("User")
+                        
+    def do_BaseModel(self, arg):
+        """
+        Docs
+        """
+        allowed_methods = [".all()"]
+        if len(arg) > 0:
+            args_array = arg.split()
+            if len(args_array) > 0:
+                command_method = args_array[0]
+                if command_method in allowed_methods:
+                    if command_method == ".all()":
+                        self.do_all("BaseModel")
+
+    def do_State(self, arg):
+        """
+        Docs
+        """
+        allowed_methods = [".all()"]
+        if len(arg) > 0:
+            args_array = arg.split()
+            if len(args_array) > 0:
+                command_method = args_array[0]
+                if command_method in allowed_methods:
+                    if command_method == ".all()":
+                        self.do_all("State")
+
+    def do_City(self, arg):
+        """
+        Docs
+        """
+        allowed_methods = [".all()"]
+        if len(arg) > 0:
+            args_array = arg.split()
+            if len(args_array) > 0:
+                command_method = args_array[0]
+                if command_method in allowed_methods:
+                    if command_method == ".all()":
+                        self.do_all("City")
+
+    def do_Amenity(self, arg):
+        """
+        Docs
+        """
+        allowed_methods = [".all()"]
+        if len(arg) > 0:
+            args_array = arg.split()
+            if len(args_array) > 0:
+                command_method = args_array[0]
+                if command_method in allowed_methods:
+                    if command_method == ".all()":
+                        self.do_all("Amenity")
+
+    def do_Place(self, arg):
+        """
+        Docs
+        """
+        allowed_methods = [".all()"]
+        if len(arg) > 0:
+            args_array = arg.split()
+            if len(args_array) > 0:
+                command_method = args_array[0]
+                if command_method in allowed_methods:
+                    if command_method == ".all()":
+                        self.do_all("Place")
+
+    def do_Review(self, arg):
+        """
+        Docs
+        """
+        allowed_methods = [".all()"]
+        if len(arg) > 0:
+            args_array = arg.split()
+            if len(args_array) > 0:
+                command_method = args_array[0]
+                if command_method in allowed_methods:
+                    if command_method == ".all()":
+                        self.do_all("Review")
 
 
 if __name__ == '__main__':
