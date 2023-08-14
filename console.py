@@ -185,129 +185,60 @@ class HBNBCommand(cmd.Cmd):
         """
         Docs
         """
-        allowed_methods = [".all()", ".count()"]
         class_name = "User"
-        show_regex = re.compile("\.show\(\"(.*?)\"\)")
-        if len(arg) > 0:
-            args_array = arg.split()
-            if len(args_array) > 0:
-                command_method = args_array[0]
-                if command_method in allowed_methods:
-                    if command_method == ".all()":
-                        self.do_all(class_name)
-                    if command_method == ".count()":
-                        self.get_count(class_name)
-                elif(show_regex.search(args_array[0]).group(1) is not None):
-                    obj_id = show_regex.search(args_array[0]).group(1)
-                    self.do_show("{} {}".format(class_name, obj_id))
-                        
+        self.data_model_func(arg, class_name)
+              
     def do_BaseModel(self, arg):
         """
         Docs
         """
-        allowed_methods = [".all()", ".count()"]
         class_name = "BaseModel"
-        show_regex = re.compile("\.show\(\"(.*?)\"\)")
-        if len(arg) > 0:
-            args_array = arg.split()
-            if len(args_array) > 0:
-                command_method = args_array[0]
-                if command_method in allowed_methods:
-                    if command_method == ".all()":
-                        self.do_all(class_name)
-                    if command_method == ".count()":
-                        self.get_count(class_name)
-                elif(show_regex.search(args_array[0]).group(1) is not None):
-                    obj_id = show_regex.search(args_array[0]).group(1)
-                    self.do_show("{} {}".format(class_name, obj_id))
+        self.data_model_func(arg, class_name)
 
     def do_State(self, arg):
         """
         Docs
         """
-        allowed_methods = [".all()", ".count()"]
         class_name = "State"
-        show_regex = re.compile("\.show\(\"(.*?)\"\)")
-        if len(arg) > 0:
-            args_array = arg.split()
-            if len(args_array) > 0:
-                command_method = args_array[0]
-                if command_method in allowed_methods:
-                    if command_method == ".all()":
-                        self.do_all(class_name)
-                    if command_method == ".count()":
-                        self.get_count(class_name)
-                elif(show_regex.search(args_array[0]).group(1) is not None):
-                    obj_id = show_regex.search(args_array[0]).group(1)
-                    self.do_show("{} {}".format(class_name, obj_id))
+        self.data_model_func(arg, class_name)
 
     def do_City(self, arg):
         """
         Docs
         """
-        allowed_methods = [".all()", ".count()"]
         class_name = "City"
-        show_regex = re.compile("\.show\(\"(.*?)\"\)")
-        if len(arg) > 0:
-            args_array = arg.split()
-            if len(args_array) > 0:
-                command_method = args_array[0]
-                if command_method in allowed_methods:
-                    if command_method == ".all()":
-                        self.do_all(class_name)
-                    if command_method == ".count()":
-                        self.get_count(class_name)
-                elif(show_regex.search(args_array[0]).group(1) is not None):
-                    obj_id = show_regex.search(args_array[0]).group(1)
-                    self.do_show("{} {}".format(class_name, obj_id))
+        self.data_model_func(arg, class_name)
 
     def do_Amenity(self, arg):
         """
         Docs
         """
-        allowed_methods = [".all()", ".count()"]
         class_name = "Amenity"
-        show_regex = re.compile("\.show\(\"(.*?)\"\)")
-        if len(arg) > 0:
-            args_array = arg.split()
-            if len(args_array) > 0:
-                command_method = args_array[0]
-                if command_method in allowed_methods:
-                    if command_method == ".all()":
-                        self.do_all(class_name)
-                    if command_method == ".count()":
-                        self.get_count(class_name)
-                elif(show_regex.search(args_array[0]).group(1) is not None):
-                    obj_id = show_regex.search(args_array[0]).group(1)
-                    self.do_show("{} {}".format(class_name, obj_id))
+        self.data_model_func(arg, class_name)
+
 
     def do_Place(self, arg):
         """
         Docs
         """
-        allowed_methods = [".all()", ".count()"]
         class_name = "Place"
-        show_regex = re.compile("\.show\(\"(.*?)\"\)")
-        if len(arg) > 0:
-            args_array = arg.split()
-            if len(args_array) > 0:
-                command_method = args_array[0]
-                if command_method in allowed_methods:
-                    if command_method == ".all()":
-                        self.do_all(class_name)
-                    if command_method == ".count()":
-                        self.get_count(class_name)
-                elif(show_regex.search(args_array[0]).group(1) is not None):
-                    obj_id = show_regex.search(args_array[0]).group(1)
-                    self.do_show("{} {}".format(class_name, obj_id))
+        self.data_model_func(arg, class_name)
+
 
     def do_Review(self, arg):
         """
         Docs
         """
-        allowed_methods = [".all()", ".count()"]
         class_name = "Review"
+        self.data_model_func(arg, class_name)
+
+    def data_model_func(self, arg, class_name):
+        """
+        Docs
+        """
+        allowed_methods = [".all()", ".count()"]
         show_regex = re.compile("\.show\(\"(.*?)\"\)")
+        delete_regex = re.compile("\.delete\(\"(.*?)\"\)")
         if len(arg) > 0:
             args_array = arg.split()
             if len(args_array) > 0:
@@ -317,9 +248,12 @@ class HBNBCommand(cmd.Cmd):
                         self.do_all(class_name)
                     if command_method == ".count()":
                         self.get_count(class_name)
-                elif(show_regex.search(args_array[0]).group(1) is not None):
+                elif(show_regex.search(args_array[0]) is not None):
                     obj_id = show_regex.search(args_array[0]).group(1)
                     self.do_show("{} {}".format(class_name, obj_id))
+                elif(delete_regex.search(args_array[0]) is not None):
+                    obj_id = delete_regex.search(args_array[0]).group(1)
+                    self.do_destroy("{} {}".format(class_name, obj_id))
 
     def get_count(self, class_name):
         """
