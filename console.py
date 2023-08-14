@@ -238,7 +238,7 @@ class HBNBCommand(cmd.Cmd):
         """
         allowed_methods = [".all()", ".count()"]
         show_regex = re.compile("\.show\(\"(.*?)\"\)")
-        delete_regex = re.compile("\.delete\(\"(.*?)\"\)")
+        delete_regex = re.compile("\.destroy\(\"(.*?)\"\)")
         if len(arg) > 0:
             args_array = arg.split()
             if len(args_array) > 0:
