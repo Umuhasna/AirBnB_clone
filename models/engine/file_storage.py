@@ -47,7 +47,9 @@ class FileStorage:
         filename = FileStorage.__file_path
         if isfile(filename):
             with open(filename, "r") as f:
-                line = f.readline()
-                final_dict = loads(line)
+                json_string = f.read()
+                final_dict = loads(json_string)
             for key, value in final_dict.items():
-                self.new(BaseModel(value))
+                class_name, obj_id = key.split(".")
+                if class_name == "BaseModel":
+                    self.new(BaseModel(**value))
