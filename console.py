@@ -82,7 +82,9 @@ class HBNBCommand(cmd.Cmd):
         """
         Docs
         """
-        allowed_classes = ["BaseModel", "User", "State", "City", "Amenity", "Place", "Review"]
+        allowed_classes = [
+                "BaseModel", "User", "State",
+                "City", "Amenity", "Place", "Review"]
         if len(arg) > 0:
             args_array = arg.split()
             if len(args_array) > 0:
@@ -90,7 +92,8 @@ class HBNBCommand(cmd.Cmd):
                 if class_name in allowed_classes:
                     if len(args_array) > 1:
                         objs_dict = models.storage.all()
-                        search_string = "{}.{}".format(class_name, args_array[1])
+                        search_string = "{}.{}".format(
+                                class_name, args_array[1])
                         if search_string in objs_dict:
                             print(objs_dict[search_string])
                         else:
@@ -106,7 +109,9 @@ class HBNBCommand(cmd.Cmd):
         """
         Docs
         """
-        allowed_classes = ["BaseModel", "User", "State", "City", "Amenity", "Place", "Review"]
+        allowed_classes = [
+                "BaseModel", "User", "State",
+                "City", "Amenity", "Place", "Review"]
         if len(arg) > 0:
             args_array = arg.split()
             if len(args_array) > 0:
@@ -114,9 +119,10 @@ class HBNBCommand(cmd.Cmd):
                 if class_name in allowed_classes:
                     if len(args_array) > 1:
                         objs_dict = models.storage.all()
-                        search_string = "{}.{}".format(class_name, args_array[1])
+                        search_string = "{}.{}".format(
+                                class_name, args_array[1])
                         if search_string in objs_dict:
-                            del(objs_dict[search_string])
+                            del (objs_dict[search_string])
                             models.storage.save()
                         else:
                             print("** no instance found **")
@@ -125,13 +131,15 @@ class HBNBCommand(cmd.Cmd):
                 else:
                     print("** class doesn't exist **")
         else:
-            print("** class name missing **")           
-    
+            print("** class name missing **")
+
     def do_all(self, arg):
         """
         Docs
         """
-        allowed_classes = ["BaseModel", "User", "State", "City", "Amenity", "Place", "Review"]
+        allowed_classes = [
+                "BaseModel", "User", "State",
+                "City", "Amenity", "Place", "Review"]
         if len(arg) > 0:
             args_array = arg.split()
             if len(args_array) > 0:
@@ -154,7 +162,9 @@ class HBNBCommand(cmd.Cmd):
         """
         Docs
         """
-        allowed_classes = ["BaseModel", "User", "State", "City", "Amenity", "Place", "Review"]
+        allowed_classes = [
+                "BaseModel", "User", "State",
+                "City", "Amenity", "Place", "Review"]
         if len(arg) > 0:
             args_array = arg.split()
             if len(args_array) > 0:
@@ -162,12 +172,17 @@ class HBNBCommand(cmd.Cmd):
                 if class_name in allowed_classes:
                     if len(args_array) > 1:
                         objs_dict = models.storage.all()
-                        search_string = "{}.{}".format(class_name, args_array[1])
+                        search_string = "{}.{}".format(
+                                class_name, args_array[1])
                         if search_string in objs_dict:
                             if len(args_array) > 2:
                                 if len(args_array) > 3:
-                                    if (args_array[3] not in ["created_at", "updated_at", "id"]):
-                                        setattr(objs_dict[search_string], str(args_array[2]), str(args_array[3])) 
+                                    if (args_array[3]
+                                            not in
+                                            ["created_at",
+                                                "updated_at", "id"]):
+                                        setattr(objs_dict[search_string], str(
+                                            args_array[2]), str(args_array[3]))
                                 else:
                                     print("** value missing **")
                             else:
@@ -187,7 +202,7 @@ class HBNBCommand(cmd.Cmd):
         """
         class_name = "User"
         self.data_model_func(arg, class_name)
-              
+
     def do_BaseModel(self, arg):
         """
         Docs
@@ -216,14 +231,12 @@ class HBNBCommand(cmd.Cmd):
         class_name = "Amenity"
         self.data_model_func(arg, class_name)
 
-
     def do_Place(self, arg):
         """
         Docs
         """
         class_name = "Place"
         self.data_model_func(arg, class_name)
-
 
     def do_Review(self, arg):
         """
@@ -237,10 +250,10 @@ class HBNBCommand(cmd.Cmd):
         Docs
         """
         allowed_methods = [".all()", ".count()"]
-        show_regex = re.compile("\.show\(\"(.*?)\"\)")
-        delete_regex = re.compile("\.destroy\(\"(.*?)\"\)")
-        update_regex = re.compile("\.update\(\"(.*?)\", \"(.*?)\", (.*?)\)")
-        update_dict_regex = re.compile("\.update\(\"(.*?)\",(.*?)\)")
+        show_regex = re.compile(r"\.show\(\"(.*?)\"\)")
+        delete_regex = re.compile(r"\.destroy\(\"(.*?)\"\)")
+        update_regex = re.compile(r"\.update\(\"(.*?)\", \"(.*?)\", (.*?)\)")
+        update_dict_regex = re.compile(r"\.update\(\"(.*?)\",(.*?)\)")
         if len(arg) > 0:
             args_array = arg.split()
             if len(args_array) > 0:
@@ -250,30 +263,32 @@ class HBNBCommand(cmd.Cmd):
                         self.do_all(class_name)
                     if command_method == ".count()":
                         self.get_count(class_name)
-                elif(show_regex.search(args_array[0]) is not None):
+                elif (show_regex.search(args_array[0]) is not None):
                     obj_id = show_regex.search(args_array[0]).group(1)
                     self.do_show("{} {}".format(class_name, obj_id))
-                elif(delete_regex.search(args_array[0]) is not None):
+                elif (delete_regex.search(args_array[0]) is not None):
                     obj_id = delete_regex.search(args_array[0]).group(1)
                     self.do_destroy("{} {}".format(class_name, obj_id))
-                elif(update_regex.search(arg) is not None):
+                elif (update_regex.search(arg) is not None):
                     obj_id = update_regex.search(arg).group(1)
                     obj_attr_name = update_regex.search(arg).group(2)
                     obj_attr_value = update_regex.search(arg).group(3)
-                    self.do_update("{} {} {} {}".format(class_name,
-                        obj_id, obj_attr_name, obj_attr_value))
-                elif(update_dict_regex.search(arg) is not None):
+                    self.do_update("{} {} {} {}".format(
+                        class_name, obj_id, obj_attr_name, obj_attr_value))
+                elif (update_dict_regex.search(arg) is not None):
                     obj_id = update_dict_regex.search(arg).group(1)
                     obj_dict = eval(update_dict_regex.search(arg).group(2))
                     for key, value in obj_dict.items():
-                        self.do_update("{} {} {} {}".format(class_name,
-                            obj_id, key, value))
+                        self.do_update("{} {} {} {}".format(
+                            class_name, obj_id, key, value))
 
     def get_count(self, class_name):
         """
         Docs
         """
-        allowed_classes = ["BaseModel", "User", "State", "City", "Amenity", "Place", "Review"]
+        allowed_classes = [
+                "BaseModel", "User", "State",
+                "City", "Amenity", "Place", "Review"]
         if class_name in allowed_classes:
             final_list = []
             for key, value in models.storage.all().items():

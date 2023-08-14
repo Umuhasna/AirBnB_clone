@@ -141,5 +141,6 @@ class TestBaseModel(unittest.TestCase):
 
         self.assertIs(type(to_dict_dict["id"]), str)
 
+
 if __name__ == "__main__":
     unittest.main()
