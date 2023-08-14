@@ -3,6 +3,7 @@
 Console DOC
 """
 import cmd
+import re
 from models.base_model import BaseModel
 from models.user import User
 from models.state import State
@@ -186,6 +187,7 @@ class HBNBCommand(cmd.Cmd):
         """
         allowed_methods = [".all()", ".count()"]
         class_name = "User"
+        show_regex = re.compile("\.show\(\"(.*?)\"\)")
         if len(arg) > 0:
             args_array = arg.split()
             if len(args_array) > 0:
@@ -195,6 +197,9 @@ class HBNBCommand(cmd.Cmd):
                         self.do_all(class_name)
                     if command_method == ".count()":
                         self.get_count(class_name)
+                elif(show_regex.search(args_array[0]).group(1) is not None):
+                    obj_id = show_regex.search(args_array[0]).group(1)
+                    self.do_show("{} {}".format(class_name, obj_id))
                         
     def do_BaseModel(self, arg):
         """
@@ -202,6 +207,7 @@ class HBNBCommand(cmd.Cmd):
         """
         allowed_methods = [".all()", ".count()"]
         class_name = "BaseModel"
+        show_regex = re.compile("\.show\(\"(.*?)\"\)")
         if len(arg) > 0:
             args_array = arg.split()
             if len(args_array) > 0:
@@ -211,6 +217,9 @@ class HBNBCommand(cmd.Cmd):
                         self.do_all(class_name)
                     if command_method == ".count()":
                         self.get_count(class_name)
+                elif(show_regex.search(args_array[0]).group(1) is not None):
+                    obj_id = show_regex.search(args_array[0]).group(1)
+                    self.do_show("{} {}".format(class_name, obj_id))
 
     def do_State(self, arg):
         """
@@ -218,6 +227,7 @@ class HBNBCommand(cmd.Cmd):
         """
         allowed_methods = [".all()", ".count()"]
         class_name = "State"
+        show_regex = re.compile("\.show\(\"(.*?)\"\)")
         if len(arg) > 0:
             args_array = arg.split()
             if len(args_array) > 0:
@@ -227,6 +237,9 @@ class HBNBCommand(cmd.Cmd):
                         self.do_all(class_name)
                     if command_method == ".count()":
                         self.get_count(class_name)
+                elif(show_regex.search(args_array[0]).group(1) is not None):
+                    obj_id = show_regex.search(args_array[0]).group(1)
+                    self.do_show("{} {}".format(class_name, obj_id))
 
     def do_City(self, arg):
         """
@@ -234,6 +247,7 @@ class HBNBCommand(cmd.Cmd):
         """
         allowed_methods = [".all()", ".count()"]
         class_name = "City"
+        show_regex = re.compile("\.show\(\"(.*?)\"\)")
         if len(arg) > 0:
             args_array = arg.split()
             if len(args_array) > 0:
@@ -243,7 +257,9 @@ class HBNBCommand(cmd.Cmd):
                         self.do_all(class_name)
                     if command_method == ".count()":
                         self.get_count(class_name)
-
+                elif(show_regex.search(args_array[0]).group(1) is not None):
+                    obj_id = show_regex.search(args_array[0]).group(1)
+                    self.do_show("{} {}".format(class_name, obj_id))
 
     def do_Amenity(self, arg):
         """
@@ -251,6 +267,7 @@ class HBNBCommand(cmd.Cmd):
         """
         allowed_methods = [".all()", ".count()"]
         class_name = "Amenity"
+        show_regex = re.compile("\.show\(\"(.*?)\"\)")
         if len(arg) > 0:
             args_array = arg.split()
             if len(args_array) > 0:
@@ -260,6 +277,9 @@ class HBNBCommand(cmd.Cmd):
                         self.do_all(class_name)
                     if command_method == ".count()":
                         self.get_count(class_name)
+                elif(show_regex.search(args_array[0]).group(1) is not None):
+                    obj_id = show_regex.search(args_array[0]).group(1)
+                    self.do_show("{} {}".format(class_name, obj_id))
 
     def do_Place(self, arg):
         """
@@ -267,6 +287,7 @@ class HBNBCommand(cmd.Cmd):
         """
         allowed_methods = [".all()", ".count()"]
         class_name = "Place"
+        show_regex = re.compile("\.show\(\"(.*?)\"\)")
         if len(arg) > 0:
             args_array = arg.split()
             if len(args_array) > 0:
@@ -276,6 +297,9 @@ class HBNBCommand(cmd.Cmd):
                         self.do_all(class_name)
                     if command_method == ".count()":
                         self.get_count(class_name)
+                elif(show_regex.search(args_array[0]).group(1) is not None):
+                    obj_id = show_regex.search(args_array[0]).group(1)
+                    self.do_show("{} {}".format(class_name, obj_id))
 
     def do_Review(self, arg):
         """
@@ -283,6 +307,7 @@ class HBNBCommand(cmd.Cmd):
         """
         allowed_methods = [".all()", ".count()"]
         class_name = "Review"
+        show_regex = re.compile("\.show\(\"(.*?)\"\)")
         if len(arg) > 0:
             args_array = arg.split()
             if len(args_array) > 0:
@@ -292,6 +317,9 @@ class HBNBCommand(cmd.Cmd):
                         self.do_all(class_name)
                     if command_method == ".count()":
                         self.get_count(class_name)
+                elif(show_regex.search(args_array[0]).group(1) is not None):
+                    obj_id = show_regex.search(args_array[0]).group(1)
+                    self.do_show("{} {}".format(class_name, obj_id))
 
     def get_count(self, class_name):
         """
