@@ -50,7 +50,8 @@ class FileStorage:
         '''
         Docs
         '''
-        allowed_classes = ["BaseModel", "User", "State", "City", "Amenity", "Place", "Review"]
+        allowed_classes = ["BaseModel", "User", "State", "City",
+                           "Amenity", "Place", "Review"]
         filename = FileStorage.__file_path
         if isfile(filename):
             with open(filename, "r") as f:
