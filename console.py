@@ -184,92 +184,128 @@ class HBNBCommand(cmd.Cmd):
         """
         Docs
         """
-        allowed_methods = [".all()"]
+        allowed_methods = [".all()", ".count()"]
+        class_name = "User"
         if len(arg) > 0:
             args_array = arg.split()
             if len(args_array) > 0:
                 command_method = args_array[0]
                 if command_method in allowed_methods:
                     if command_method == ".all()":
-                        self.do_all("User")
+                        self.do_all(class_name)
+                    if command_method == ".count()":
+                        self.get_count(class_name)
                         
     def do_BaseModel(self, arg):
         """
         Docs
         """
-        allowed_methods = [".all()"]
+        allowed_methods = [".all()", ".count()"]
+        class_name = "BaseModel"
         if len(arg) > 0:
             args_array = arg.split()
             if len(args_array) > 0:
                 command_method = args_array[0]
                 if command_method in allowed_methods:
                     if command_method == ".all()":
-                        self.do_all("BaseModel")
+                        self.do_all(class_name)
+                    if command_method == ".count()":
+                        self.get_count(class_name)
 
     def do_State(self, arg):
         """
         Docs
         """
-        allowed_methods = [".all()"]
+        allowed_methods = [".all()", ".count()"]
+        class_name = "State"
         if len(arg) > 0:
             args_array = arg.split()
             if len(args_array) > 0:
                 command_method = args_array[0]
                 if command_method in allowed_methods:
                     if command_method == ".all()":
-                        self.do_all("State")
+                        self.do_all(class_name)
+                    if command_method == ".count()":
+                        self.get_count(class_name)
 
     def do_City(self, arg):
         """
         Docs
         """
-        allowed_methods = [".all()"]
+        allowed_methods = [".all()", ".count()"]
+        class_name = "City"
         if len(arg) > 0:
             args_array = arg.split()
             if len(args_array) > 0:
                 command_method = args_array[0]
                 if command_method in allowed_methods:
                     if command_method == ".all()":
-                        self.do_all("City")
+                        self.do_all(class_name)
+                    if command_method == ".count()":
+                        self.get_count(class_name)
+
 
     def do_Amenity(self, arg):
         """
         Docs
         """
-        allowed_methods = [".all()"]
+        allowed_methods = [".all()", ".count()"]
+        class_name = "Amenity"
         if len(arg) > 0:
             args_array = arg.split()
             if len(args_array) > 0:
                 command_method = args_array[0]
                 if command_method in allowed_methods:
                     if command_method == ".all()":
-                        self.do_all("Amenity")
+                        self.do_all(class_name)
+                    if command_method == ".count()":
+                        self.get_count(class_name)
 
     def do_Place(self, arg):
         """
         Docs
         """
-        allowed_methods = [".all()"]
+        allowed_methods = [".all()", ".count()"]
+        class_name = "Place"
         if len(arg) > 0:
             args_array = arg.split()
             if len(args_array) > 0:
                 command_method = args_array[0]
                 if command_method in allowed_methods:
                     if command_method == ".all()":
-                        self.do_all("Place")
+                        self.do_all(class_name)
+                    if command_method == ".count()":
+                        self.get_count(class_name)
 
     def do_Review(self, arg):
         """
         Docs
         """
-        allowed_methods = [".all()"]
+        allowed_methods = [".all()", ".count()"]
+        class_name = "Review"
         if len(arg) > 0:
             args_array = arg.split()
             if len(args_array) > 0:
                 command_method = args_array[0]
                 if command_method in allowed_methods:
                     if command_method == ".all()":
-                        self.do_all("Review")
+                        self.do_all(class_name)
+                    if command_method == ".count()":
+                        self.get_count(class_name)
+
+    def get_count(self, class_name):
+        """
+        Docs
+        """
+        allowed_classes = ["BaseModel", "User", "State", "City", "Amenity", "Place", "Review"]
+        if class_name in allowed_classes:
+            final_list = []
+            for key, value in models.storage.all().items():
+                if (class_name in key):
+                    final_list.append(str(value))
+            print(len(final_list))
+        else:
+            print("** class doesn't exist **")
 
 
 if __name__ == '__main__':
