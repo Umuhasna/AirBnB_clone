@@ -240,6 +240,7 @@ class HBNBCommand(cmd.Cmd):
         show_regex = re.compile("\.show\(\"(.*?)\"\)")
         delete_regex = re.compile("\.destroy\(\"(.*?)\"\)")
         update_regex = re.compile("\.update\(\"(.*?)\", \"(.*?)\", (.*?)\)")
+        update_dict_regex = re.compile("\.update\(\"(.*?)\",(.*?)\)")
         if len(arg) > 0:
             args_array = arg.split()
             if len(args_array) > 0:
@@ -261,6 +262,12 @@ class HBNBCommand(cmd.Cmd):
                     obj_attr_value = update_regex.search(arg).group(3)
                     self.do_update("{} {} {} {}".format(class_name,
                         obj_id, obj_attr_name, obj_attr_value))
+                elif(update_dict_regex.search(arg) is not None):
+                    obj_id = update_dict_regex.search(arg).group(1)
+                    obj_dict = eval(update_dict_regex.search(arg).group(2))
+                    for key, value in obj_dict.items():
+                        self.do_update("{} {} {} {}".format(class_name,
+                            obj_id, key, value))
 
     def get_count(self, class_name):
         """
