@@ -151,10 +151,14 @@ class TestFileStorage(unittest.TestCase):
         Docs
         '''
         file_storage = FileStorage()
-        file_storage._FileStorage__objects = {}
         obj1 = BaseModel()
-
+        
+        file_storage.new(obj1)
         file_storage.save()
+        with open("file.json", "r") as f:
+            string = f.read()
+        self.assertIn("BaseModel.{}".format(obj1.id), string)
+
         file_storage.reload()
         objects = file_storage.all()
 
