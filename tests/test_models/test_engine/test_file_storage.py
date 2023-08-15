@@ -117,10 +117,11 @@ class TestFileStorage(unittest.TestCase):
         '''
         file_storage = FileStorage()
         obj1 = BaseModel()
-        objects = file_storage.all()
 
         file_storage.save()
+        file_storage._FileStorage__objects = {}
         file_storage.reload()
+        objects = file_storage.all()
 
         self.assertIn("BaseModel.{}".format(obj1.id), objects)
 
