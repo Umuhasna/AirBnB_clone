@@ -26,14 +26,53 @@ class TestConsole(unittest.TestCase):
         classDoc = __import__("console").HBNBCommand.__doc__
         self.assertGreater(len(classDoc), 0)
 
-    def test_ClassDocs(self):
+    def test_quit(self):
         '''
         Docs
         '''
+        with patch("sys.stdout", new=StringIO()) as f:
+            HBNBCommand().onecmd("quit")
+            expected_output = ""
+            self.assertEqual(expected_output, f.getvalue().strip())
 
-        functionDoc = __import__("console").HBNBCommand.__doc__
-        self.assertGreater(len(classDoc), 0)
+    def test_EOF(self):
+        '''
+        Docs
+        '''
+        with patch("sys.stdout", new=StringIO()) as f:
+            HBNBCommand().onecmd("EOF")
+            expected_output = ""
+            self.assertEqual(expected_output, f.getvalue().strip())
 
+    def test_help(self):
+        '''
+        Docs
+        '''
+        with patch("sys.stdout", new=StringIO()) as f:
+            HBNBCommand().onecmd("help")
+            expected_output = """Documented commands (type help <topic>):
+========================================
+Amenity    City  Place   State  all     destroy  quit  update
+BaseModel  EOF   Review  User   create  help     show"""
+            self.assertEqual(expected_output, f.getvalue().strip())
+
+    def test_create_BaseModel(self):
+        '''
+        Docs
+        '''
+        with patch("sys.stdout", new=StringIO()) as f:
+            HBNBCommand().onecmd("create BaseModel")
+            expected_output = 36
+            self.assertEqual(expected_output, len(f.getvalue().strip()))
+
+    def test_show_BaseModel(self):
+        '''
+        Docs
+        '''
+        with patch("sys.stdout", new=StringIO()) as f:
+            HBNBCommand().onecmd("create BaseModel")
+            expected_output = 36
+            self.assertEqual(expected_output, len(f.getvalue().strip()))
 
 
 if __name__ == "__main__":
