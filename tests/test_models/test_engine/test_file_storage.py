@@ -40,6 +40,33 @@ class TestFileStorage(unittest.TestCase):
                 .engine.file_storage.FileStorage.save.__doc__)
         self.assertGreater(len(methodDoc), 0)
 
+    def test_methodDocsNew(self):
+        '''
+        Docs
+        '''
+        methodDoc = (
+                __import__("models.engine.file_storage")
+                .engine.file_storage.FileStorage.new.__doc__)
+        self.assertGreater(len(methodDoc), 0)
+
+    def test_methodDocsAll(self):
+        '''
+        Docs
+        '''
+        methodDoc = (
+                __import__("models.engine.file_storage")
+                .engine.file_storage.FileStorage.all.__doc__)
+        self.assertGreater(len(methodDoc), 0)
+
+    def test_methodDocsReload(self):
+        '''
+        Docs
+        '''
+        methodDoc = (
+                __import__("models.engine.file_storage")
+                .engine.file_storage.FileStorage.reload.__doc__)
+        self.assertGreater(len(methodDoc), 0)
+
     def test_file_path_Type(self):
         '''
         Docs
@@ -91,11 +118,19 @@ class TestFileStorage(unittest.TestCase):
         file_storage.new(obj1)
         file_storage.new(obj2)
 
-        self.assertIn("BaseModel.{}".format(obj1.id), file_storage._FileStorage__objects)
-        self.assertIn("BaseModel.{}".format(obj2.id), file_storage._FileStorage__objects)
+        self.assertIn(
+                "BaseModel.{}".format(obj1.id),
+                file_storage._FileStorage__objects)
+        self.assertIn(
+                "BaseModel.{}".format(obj2.id),
+                file_storage._FileStorage__objects)
 
-        self.assertEqual(file_storage._FileStorage__objects["BaseModel.{}".format(obj1.id)], obj1)
-        self.assertEqual(file_storage._FileStorage__objects["BaseModel.{}".format(obj2.id)], obj2)
+        self.assertEqual(
+                file_storage._FileStorage__objects[
+                    "BaseModel.{}".format(obj1.id)], obj1)
+        self.assertEqual(
+                file_storage._FileStorage__objects[
+                    "BaseModel.{}".format(obj2.id)], obj2)
 
     def test_method_save(self):
         '''
