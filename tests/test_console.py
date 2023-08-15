@@ -119,6 +119,42 @@ BaseModel  EOF   Review  User   create  help     show"""
             expected_output = "** no instance found **"
             self.assertEqual(expected_output, f.getvalue().strip())
 
+    def test_destroy_BaseModel_no_class_name(self):
+        '''
+        Docs
+        '''
+        with patch("sys.stdout", new=StringIO()) as f:
+            HBNBCommand().onecmd("destroy")
+            expected_output = "** class name missing **"
+            self.assertEqual(expected_output, f.getvalue().strip())
+
+    def test_destroy_BaseModel_wrong_class_name(self):
+        '''
+        Docs
+        '''
+        with patch("sys.stdout", new=StringIO()) as f:
+            HBNBCommand().onecmd("destroy MyClass")
+            expected_output = "** class doesn't exist **"
+            self.assertEqual(expected_output, f.getvalue().strip())
+
+    def test_destroy_BaseModel_no_instance_id(self):
+        '''
+        Docs
+        '''
+        with patch("sys.stdout", new=StringIO()) as f:
+            HBNBCommand().onecmd("destroy BaseModel")
+            expected_output = "** instance id missing **"
+            self.assertEqual(expected_output, f.getvalue().strip())
+
+    def test_destroy_BaseModel_instance_not_found(self):
+        '''
+        Docs
+        '''
+        with patch("sys.stdout", new=StringIO()) as f:
+            HBNBCommand().onecmd("destroy BaseModel 121212")
+            expected_output = "** no instance found **"
+            self.assertEqual(expected_output, f.getvalue().strip())
+
 
 if __name__ == "__main__":
     unittest.main()
