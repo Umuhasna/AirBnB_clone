@@ -151,10 +151,10 @@ class TestFileStorage(unittest.TestCase):
         Docs
         '''
         file_storage = FileStorage()
+        file_storage._FileStorage__objects = {}
         obj1 = BaseModel()
 
         file_storage.save()
-        file_storage._FileStorage__objects = {}
         file_storage.reload()
         objects = file_storage.all()
 
