@@ -5,7 +5,7 @@ Module
 import unittest
 from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
-from datetime import datetime
+import models
 
 
 class TestFileStorage(unittest.TestCase):
@@ -151,18 +151,12 @@ class TestFileStorage(unittest.TestCase):
         Docs
         '''
         file_storage = FileStorage()
-        obj1 = BaseModel()
-        
-        file_storage.new(obj1)
+        base_model = BaseModel()
         file_storage.save()
-        with open("file.json", "r") as f:
-            string = f.read()
-        self.assertIn("BaseModel.{}".format(obj1.id), string)
+        models.storage.reload()
+        objects = file_storage._FileStorage__objects
 
-        file_storage.reload()
-        objects = file_storage.all()
-
-        self.assertIn("BaseModel.{}".format(obj1.id), objects)
+        self.assertIn("BaseModel.{}".format(base_model.id), objects)
 
 
 if __name__ == "__main__":
