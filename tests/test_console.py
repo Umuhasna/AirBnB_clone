@@ -56,7 +56,7 @@ Amenity    City  Place   State  all     destroy  quit  update
 BaseModel  EOF   Review  User   create  help     show"""
             self.assertEqual(expected_output, f.getvalue().strip())
 
-    def test_create_BaseModel(self):
+    def test_create_BaseModel_success(self):
         '''
         Docs
         '''
@@ -65,14 +65,59 @@ BaseModel  EOF   Review  User   create  help     show"""
             expected_output = 36
             self.assertEqual(expected_output, len(f.getvalue().strip()))
 
-    def test_show_BaseModel(self):
+    def test_create_BaseModel_no_class_name(self):
         '''
         Docs
         '''
         with patch("sys.stdout", new=StringIO()) as f:
-            HBNBCommand().onecmd("create BaseModel")
-            expected_output = 36
-            self.assertEqual(expected_output, len(f.getvalue().strip()))
+            HBNBCommand().onecmd("create")
+            expected_output = "** class name missing **"
+            self.assertEqual(expected_output, f.getvalue().strip())
+
+    def test_create_BaseModel_wrong_class_name(self):
+        '''
+        Docs
+        '''
+        with patch("sys.stdout", new=StringIO()) as f:
+            HBNBCommand().onecmd("create MyClass")
+            expected_output = "** class doesn't exist **"
+            self.assertEqual(expected_output, f.getvalue().strip())
+
+    def test_show_BaseModel_no_class_name(self):
+        '''
+        Docs
+        '''
+        with patch("sys.stdout", new=StringIO()) as f:
+            HBNBCommand().onecmd("show")
+            expected_output = "** class name missing **"
+            self.assertEqual(expected_output, f.getvalue().strip())
+
+    def test_show_BaseModel_wrong_class_name(self):
+        '''
+        Docs
+        '''
+        with patch("sys.stdout", new=StringIO()) as f:
+            HBNBCommand().onecmd("show MyClass")
+            expected_output = "** class doesn't exist **"
+            self.assertEqual(expected_output, f.getvalue().strip())
+
+    def test_show_BaseModel_no_instance_id(self):
+        '''
+        Docs
+        '''
+        with patch("sys.stdout", new=StringIO()) as f:
+            HBNBCommand().onecmd("show BaseModel")
+            expected_output = "** instance id missing **"
+            self.assertEqual(expected_output, f.getvalue().strip())
+
+    def test_show_BaseModel_instance_not_found(self):
+        '''
+        Docs
+        '''
+        with patch("sys.stdout", new=StringIO()) as f:
+            HBNBCommand().onecmd("show BaseModel 121212")
+            expected_output = "** no instance found **"
+            self.assertEqual(expected_output, f.getvalue().strip())
 
 
 if __name__ == "__main__":
